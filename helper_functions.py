@@ -113,6 +113,32 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
         fig.savefig("confusion_matrix.png")
 
 
+def confusio_metrics(y_true,y_pred,class_name,figsize):
+  """
+  y_true: Actual values of the data
+
+  y_pred :Predicited values of the data
+
+  class_name: class names of the data like test_data.class_names
+
+  figsize: size of the figure
+  """
+  plt.figure(figsize=figsize)
+  cm=confusion_matrix(y_true,y_pred)
+  class_names = class_name.class_names
+  sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False,xticklabels=class_names,yticklabels=class_names)
+
+  plt.title('Confusion Matrix')
+  plt.xlabel('Predicted')
+  plt.ylabel('True')
+  plt.show()
+
+
+
+
+
+
+
 # Make a function to predict on images and plot them (works with multi-class)
 def pred_and_plot(model, filename, class_names):
     """
